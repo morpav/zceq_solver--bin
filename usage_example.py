@@ -3,8 +3,10 @@ import string
 
 s = Solver()
 
-min = s.list_to_minimal([123] * 512)
-print s.minimal_to_list(min)
+org_solution = [123] * 512
+min = s.list_to_minimal(org_solution)
+back = s.minimal_to_list(min)
+assert back == org_solution
 
 for character in string.printable:
     block_header = character * 140
@@ -26,4 +28,3 @@ for character in string.printable:
         result = s.validate_solution(block_header, solution[::-1])
         if result != 0:
             print "Error: solution should be rejected (%d)" % result
-
